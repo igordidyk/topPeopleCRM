@@ -3,6 +3,7 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 
+
 <br>
 <sec:authorize access="isAuthenticated()">
     <br/>
@@ -13,6 +14,6 @@
     <c:url var="logoutUrl" value="/logout"/>
     <a href="${logoutUrl}" >logout</a>
 </sec:authorize>
-
+<script src="/js/main.js"></script>
 </body>
 </html>

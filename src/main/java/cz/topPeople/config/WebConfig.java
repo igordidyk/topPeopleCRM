@@ -21,7 +21,7 @@ public class WebConfig  extends WebMvcConfigurerAdapter {
     @Bean
     public InternalResourceViewResolver viewResolver() {
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-        viewResolver.setPrefix("/WEB-INF/templates/");
+        viewResolver.setPrefix("/WEB-INF/pages/");
         viewResolver.setSuffix(".jsp");
         viewResolver.setContentType("text/html;charset=UTF-8");
         return viewResolver;
@@ -29,9 +29,11 @@ public class WebConfig  extends WebMvcConfigurerAdapter {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/img/**")
-                .addResourceLocations("/static/images/");
+        registry.addResourceHandler("/lib/**")
+                .addResourceLocations("/static/libraries/");
+        registry.addResourceHandler("/css/**")
+                .addResourceLocations("/static/styles/");
         registry.addResourceHandler("/js/**")
-                .addResourceLocations("/static/javascript/");
+                .addResourceLocations("/static/scripts/");
     }
 }

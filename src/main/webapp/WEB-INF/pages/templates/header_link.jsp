@@ -5,5 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <title>CRM</title>
+    <link rel="stylesheet" href="/css/nav-breadcrump.css">
+    <script src="/lib/jquery-3.2.1.min.js"></script>
+    <script src="/lib/jquery.dataTables.min.js"></script>
 
 </head>

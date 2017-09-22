@@ -1,5 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<jsp:include page="fragments/header_link.jsp"/>
+<%@ page language="java" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<jsp:include page="templates/header_link.jsp"/>
 
 <c:url var="loginUrl" value="/login"/>
 <form action="${loginUrl}" method="post" class="login">
@@ -19,4 +21,5 @@
            value="${_csrf.token}"/>
 </form>
 
-<jsp:include page="fragments/footer.jsp"/>
+<jsp:include page="templates/footer.jsp"/>
+
