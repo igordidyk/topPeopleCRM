@@ -20,7 +20,7 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-//@EnableJpaRepositories("cz.people.dao")
+@EnableJpaRepositories("cz.topPeople.dao")
 @EnableTransactionManagement
 @PropertySource("classpath:db.properties")
 public class DataConfig {
