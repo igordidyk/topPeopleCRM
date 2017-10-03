@@ -3,17 +3,17 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 
+<div class="navbar-fixed-bottom">
+    <div class="container">
+        <footer style="padding-top: 60px">
+            <br/>
+            <sec:authorize access="isAuthenticated()">
+                | Authorize user : <sec:authentication property="name"></sec:authentication> <a href="/logout">Log out</a>
+            </sec:authorize>
+            <p>Ⓒ OKTENWEB DIGITAL STUDIO 2017</p>
+        </footer>
+    </div>
+</div>
 
-<br>
-<sec:authorize access="isAuthenticated()">
-    <br/>
-    | Authorize user : <sec:authentication property="name"></sec:authentication>
-    <br/>
-    | User roles : <sec:authentication property="principal.authorities"></sec:authentication>
-    <br/>
-    <c:url var="logoutUrl" value="/logout"/>
-    <a href="${logoutUrl}" >logout</a>
-</sec:authorize>
-<script src="/js/main.js"></script>
 </body>
 </html>

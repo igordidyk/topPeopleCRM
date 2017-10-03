@@ -5,32 +5,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class GroupWithEmployees {
+public class GroupWithCandidates {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nameGroup;
     private int numberOfCanditates;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "groupWithEmployees")
-    private List<Employee> employees = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "groupWithCandidates")
+    private List<Candidate> candidateList = new ArrayList<>();
 
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     private Project project;
 
-    public GroupWithEmployees() {
+    public GroupWithCandidates() {
     }
 
-    public GroupWithEmployees(String nameGroup, int numberOfCanditates) {
+    public GroupWithCandidates(String nameGroup, int numberOfCanditates) {
         this.nameGroup = nameGroup;
         this.numberOfCanditates = numberOfCanditates;
     }
 
-    public GroupWithEmployees(String nameGroup, int numberOfCanditates, List<Employee> employees) {
-        this.nameGroup = nameGroup;
-        this.numberOfCanditates = numberOfCanditates;
-        this.employees = employees;
-    }
+
 
     public Project getProject() {
         return project;
@@ -64,17 +60,10 @@ public class GroupWithEmployees {
         this.numberOfCanditates = numberOfCanditates;
     }
 
-    public List<Employee> getEmployees() {
-        return employees;
-    }
-
-    public void setEmployees(List<Employee> employees) {
-        this.employees = employees;
-    }
 
     @Override
     public String toString() {
-        return "GroupWithEmployees{" +
+        return "GroupWithCandidates{" +
                 "id=" + id +
                 ", nameGroup='" + nameGroup + '\'' +
                 ", numberOfCanditates=" + numberOfCanditates +

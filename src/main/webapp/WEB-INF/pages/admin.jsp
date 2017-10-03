@@ -2,12 +2,22 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <jsp:include page="templates/header_link.jsp"/>
 
-${principal}
+<div class="container">
+    <ol class="breadcrumb">
+        <li class="active">Admin Home</li>
+        <li><a href="/admin/company">Company</a></li>
+        <li><a href="/admin/coordinators">Coordinators</a></li>
+        <li><a href="/admin/czisco">CZ_ISCO</a></li>
+        <li><a href="/admin/allEmployee">Employee</a></li>
+        <p class="navbar-right"><a href="/logout" >Log out  </a></p>
+    </ol>
+    <br/>
+    <h2>security check</h2>
+    ${principal}
+    <br>
+    <br>
+    <h3>Congratulations to Admin page </h3>
 
-<ul class="breadcrumb">
-    <li><a href="/admin">Admin</a></li>
-    <li><a href="/admin/company">Company</a></li>
-    <li><a href="/admin/coordinator">Coordinator</a></li>
-</ul>
+</div>
 
 <jsp:include page="templates/footer.jsp"/>
