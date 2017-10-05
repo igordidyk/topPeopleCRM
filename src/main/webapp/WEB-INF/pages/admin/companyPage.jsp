@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" pageEncoding="UTF-8" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <jsp:include page="../templates/header_link.jsp"/>
@@ -64,7 +65,7 @@
 
                         <li><a href="/admin/company/edit-${company.id}" > edit Company </a></li>
                         <li><a href="/admin/company/contactPersonFromCompany-${company.id}" > Contact Person </a></li>
-                        <li><a href="/admin/company/project-${company.id}" > Project </a></li>
+                        <li><a href="/admin/company/czisco-${company.id}" > Project </a></li>
                     </div>
 
                 </td>
