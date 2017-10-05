@@ -29,6 +29,8 @@ $("#saveCoordinator").click(function () {
         username: username,
         password: password
     };
+
+
     $('input').val('');
     console.log($('input'));
     console.log(coordinator);
@@ -38,9 +40,19 @@ $("#saveCoordinator").click(function () {
         type: 'post',
         data: JSON.stringify(coordinator),
         contentType: 'application/json',
-        success: function (coordinator) {
+        success: function (coordinatorResponse) {
+            console.log();
+            let $tr = $("<tr/>");
 
-            console.log("successful registration coordinator " + coordinator.firstName + " " + coordinator.lastName);
+
+
+            for (let property in coordinator) {
+            console.log(property);
+                let $td = $("<td/>", {text: coordinator[property]});
+                $($tr).append($td);
+            }
+            $("#coordinators").append($tr);
+            console.log("successful registration coordinator " + coordinatorResponse.firstName + " " + coordinatorResponse.lastName);
 
         },
         error: function () {
@@ -51,3 +63,23 @@ $("#saveCoordinator").click(function () {
 });
 
 
+$("#coordinators a").click(function () {
+
+
+    let idOfCoordinator = $(this).attr("id");
+    let splitArrary = idOfCoordinator.split("-");
+    let id = splitArrary[1];
+    console.log(idOfCoordinator);
+    // console.log($(this).parent().parent().remove());
+    $.ajax({
+        url: `/admin/coordinators/remove-${id}`,
+        type: 'get',
+        success: function () {
+            console.log(" successful remove coordinator ");
+        },
+        error: function () {
+            console.log("error output data");
+        }
+    });
+
+});

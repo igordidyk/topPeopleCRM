@@ -8,7 +8,12 @@
     <meta name="_csrf_header" content="${_csrf.headerName}"/>
     <title>CRM</title>
     <script src="/lib/jquery-3.2.1.min.js"></script>
-    <script src="/lib/jquery.dataTables.min.js"></script>
+    <%--<script src="/lib/jquery.dataTables.min.js"></script>--%>
+
+    <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.13/css/jquery.dataTables.css">
+
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
