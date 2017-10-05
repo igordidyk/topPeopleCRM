@@ -23,18 +23,18 @@ public class DefaultController {
         return "admin";
     }
 
-//    @GetMapping("/coordinator")
-//    public String coordinator(Model model, Principal principal) {
-//        model.addAttribute("coordinatorName", principal.getName());
-//
-//        return "accountCoordinator";
-//    }
-
 
     @GetMapping("/login")
     public String loginPage(ModelMap model) {
         model.addAttribute("title", "login");
         return "login";
+    }
+
+    @GetMapping("/coordinator")
+    public String coordinator(Model model, Principal principal) {
+        model.addAttribute("coordinatorName", principal.getName());
+
+        return "coordinator";
     }
 
 }
