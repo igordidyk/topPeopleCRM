@@ -8,7 +8,7 @@
     <ol class="breadcrumb">
         <li><a href="/admin">Admin Home</a></li>
         <li class="active">Company</li>
-        <li class="active">Coordinators</li>
+        <li><a href="/admin/coordinators">Coordinators</a></li>
         <li><a href="/admin/project">Project</a></li>
         <li><a href="/admin/allEmployee">Employee</a></li>
         <p class="navbar-right"><a href="/logout">Log out </a></p>
@@ -64,8 +64,8 @@
                     <div style="list-style-type: none; text-decoration: none">
 
                         <li><a href="/admin/company/edit-${company.id}" > edit Company </a></li>
-                        <li><a href="/admin/company/contactPersonFromCompany-${company.id}" > Contact Person </a></li>
-                        <li><a href="/admin/company/czisco-${company.id}" > Project </a></li>
+                        <li><a href="/admin/company/contactPersonWithCompany-${company.id}" > Contact Person </a></li>
+                        <li><a href="/admin/company/czisco-${company.id}" > CZISCO </a></li>
                     </div>
 
                 </td>
