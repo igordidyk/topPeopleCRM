@@ -1,17 +1,24 @@
 package cz.topPeople.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Setter
+@Getter
+@ToString(exclude = {"company","groups"})
 public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String typeOfEmployment;
     private String position;
-    private String SchengenContractStarting;
+    private String schengenContractStarting;
     private String ECStarting;
     private String dateForMedicalDocs;
     private String statusOfReceived;

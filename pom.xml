@@ -8,6 +8,7 @@
     <artifactId>topPeopleCRM</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
+
     <name>top-people</name>
     <description>Crew Resource Management(CRM) for HR</description>
 
