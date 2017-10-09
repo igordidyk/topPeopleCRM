@@ -2,9 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" pageEncoding="UTF-8" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
-
+<div class="container">
 <div class="navbar-fixed-bottom">
-    <div class="container">
+
         <footer style="padding-top: 60px">
             <br/>
             <sec:authorize access="isAuthenticated()">

@@ -56,8 +56,8 @@
                 <td>${coordinator.email}</td>
                 <td>${coordinator.telephone}</td>
                 <td>
-                    <a href="/admin/coordinators/remove-${coordinator.id}" <%--id="removeCoordinator-${coordinator.id}"--%>>Remove<span
-                            class="glyphicon glyphicon-remove"></span></a>
+                    <a href="/admin/coordinators/remove-${coordinator.id}" ><%--Remove--%><span
+                            class="glyphicon glyphicon-remove">Remove </span></a>
                 </td>
 
 

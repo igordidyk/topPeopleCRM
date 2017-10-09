@@ -62,7 +62,6 @@
                 <td>${company.contactAddress}</td>
                 <td>
                     <div style="list-style-type: none; text-decoration: none">
-
                         <li><a href="/admin/company/edit-${company.id}" > edit Company </a></li>
                         <li><a href="/admin/company/contactPersonWithCompany-${company.id}" > Contact Person </a></li>
                         <li><a href="/admin/company/czisco-${company.id}" > CZISCO </a></li>

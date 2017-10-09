@@ -17,4 +17,6 @@
         <a href="/coordinator">Go to your personal account</a>
     </sec:authorize>
 </div>
+
+<%--Working version --%>
 <jsp:include page="templates/footer.jsp"/>
