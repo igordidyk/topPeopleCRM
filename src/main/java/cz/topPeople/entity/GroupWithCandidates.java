@@ -1,10 +1,19 @@
 package cz.topPeople.entity;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Setter
+@Getter
+@NoArgsConstructor
+@ToString(exclude = {"project","candidateList"})
 public class GroupWithCandidates {
 
     @Id
@@ -18,55 +27,8 @@ public class GroupWithCandidates {
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     private Project project;
 
-    public GroupWithCandidates() {
-    }
-
     public GroupWithCandidates(String nameGroup, int numberOfCanditates) {
         this.nameGroup = nameGroup;
         this.numberOfCanditates = numberOfCanditates;
-    }
-
-
-
-    public Project getProject() {
-        return project;
-    }
-
-    public void setProject(Project project) {
-        this.project = project;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getNameGroup() {
-        return nameGroup;
-    }
-
-    public void setNameGroup(String nameGroup) {
-        this.nameGroup = nameGroup;
-    }
-
-    public int getNumberOfCanditates() {
-        return numberOfCanditates;
-    }
-
-    public void setNumberOfCanditates(int numberOfCanditates) {
-        this.numberOfCanditates = numberOfCanditates;
-    }
-
-
-    @Override
-    public String toString() {
-        return "GroupWithCandidates{" +
-                "id=" + id +
-                ", nameGroup='" + nameGroup + '\'' +
-                ", numberOfCanditates=" + numberOfCanditates +
-                '}';
     }
 }

@@ -7,7 +7,7 @@
         <li class="active">Admin Home</li>
         <li><a href="/admin/company">Company</a></li>
         <li><a href="/admin/coordinators">Coordinators</a></li>
-        <li><a href="/admin/czisco">CZ_ISCO</a></li>
+        <li><a href="/admin/projects">Project</a></li>
         <li><a href="/admin/allEmployee">Employee</a></li>
         <p class="navbar-right"><a href="/logout" >Log out  </a></p>
     </ol>
@@ -19,5 +19,5 @@
     <h3>Congratulations to Admin page </h3>
 
 </div>
-
 <jsp:include page="templates/footer.jsp"/>
+

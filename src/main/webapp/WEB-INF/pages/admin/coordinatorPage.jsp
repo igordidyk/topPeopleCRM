@@ -7,7 +7,7 @@
         <li><a href="/admin">Admin Home</a></li>
         <li><a href="/admin/company">Company</a></li>
         <li class="active">Coordinators</li>
-        <li><a href="/admin/project">Project</a></li>
+        <li><a href="/admin/projects">Project</a></li>
         <li><a href="/admin/allEmployee">Employee</a></li>
         <p class="navbar-right"><a href="/logout">Log out </a></p>
 

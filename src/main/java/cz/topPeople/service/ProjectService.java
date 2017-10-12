@@ -15,4 +15,6 @@ public interface ProjectService {
     void delete(int id);
 
     void delete(Project project);
+
+    List<Project> findAllProjectsOfCompany(int id);
 }

@@ -19,6 +19,7 @@ public class CoordinatorController {
         model.addAttribute("coordinators", coordinatorService.findAll());
         return "/admin/coordinatorPage";
     }
+
     @PostMapping("/coordinators/createCoordinator")
     public String save(@RequestParam("firstName") String firstName,
                        @RequestParam("lastName") String lastName,
@@ -27,16 +28,16 @@ public class CoordinatorController {
                        @RequestParam("username") String username,
                        @RequestParam("password") String password) {
 
-        Coordinator coordinator = new Coordinator(firstName,lastName,username,password,email,telephone);
-//        coordinator.setFirstName(firstName);
-//        coordinator.setLastName(lastName);
-//        coordinator.setEmail(email);
-//        coordinator.setTelephone(telephone);
-//        coordinator.setUsername(username);
-//        coordinator.setPassword(password);
+        Coordinator coordinator = new Coordinator(firstName, lastName, username, password, email, telephone);
         coordinatorService.save(coordinator);
         return "redirect:/admin/coordinators";
     }
 
+    @GetMapping("/coordinators/remove-{id}")
+    public String removeCoordinator(@PathVariable("id") int id) {
+        coordinatorService.delete(id);
+        return "redirect:/admin/coordinators";
+
+    }
 
 }

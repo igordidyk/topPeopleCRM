@@ -6,7 +6,7 @@ import cz.topPeople.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
@@ -40,5 +40,10 @@ public class ProjectServiceImpl implements ProjectService{
     public void delete(Project project) {
         projectDAO.delete(project);
 
+    }
+
+    @Override
+    public List<Project> findAllProjectsOfCompany(int id) {
+        return projectDAO.findAllProjectsOfCompany(id);
     }
 }
