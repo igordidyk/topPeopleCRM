@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+
 @Controller
 @RequestMapping(value = "/admin", method = RequestMethod.POST)
 public class CoordinatorController {
@@ -15,7 +17,8 @@ public class CoordinatorController {
     private CoordinatorService coordinatorService;
 
     @GetMapping("/coordinators")
-    public String coordinators(Model model) {
+    public String coordinators(Model model, Principal principal) {
+        model.addAttribute("key", principal.getName());
         model.addAttribute("coordinators", coordinatorService.findAll());
         return "/admin/coordinatorPage";
     }

@@ -1,6 +1,5 @@
 package cz.topPeople.config;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -21,7 +20,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true)
-@ComponentScan("cz.topPeople.*")
+@ComponentScan("cz.topPeople")
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -41,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     private InMemoryUserDetailsManagerConfigurer<AuthenticationManagerBuilder> inMemoryConfigure() {
-        return new InMemoryUserDetailsManagerConfigurer<AuthenticationManagerBuilder>();
+        return new InMemoryUserDetailsManagerConfigurer<>();
     }
 
     @Autowired

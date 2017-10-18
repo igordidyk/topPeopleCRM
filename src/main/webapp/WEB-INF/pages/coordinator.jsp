@@ -5,7 +5,7 @@
 <div class="container">
     <ol class="breadcrumb">
         <li class="active"><%--<a href="/admin">Admin Home</a>--%>Coordinator Home</li>
-        <li><a href="/coordinator/candidates">Employee</a></li>
+        <li><a href="/coordinator/candidates">Candidate</a></li>
         <li><a href="/coordinator/myAccount">Account details</a></li>
         <p class="navbar-right"><a href="/logout" >Log out  </a></p>
     </ol>

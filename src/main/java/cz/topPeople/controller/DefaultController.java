@@ -37,4 +37,10 @@ public class DefaultController {
         return "coordinator";
     }
 
+    @GetMapping("/403")
+        public String accessDeniedPage() {
+
+            return "/error/403";
+        }
+
 }

@@ -1,16 +1,31 @@
 package cz.topPeople.controller.coordinator;
 
+import cz.topPeople.entity.Address;
+import cz.topPeople.entity.BirthPlace;
+import cz.topPeople.entity.CZ_ISCO;
 import cz.topPeople.entity.Candidate;
+import cz.topPeople.service.CandidateService;
+import cz.topPeople.service.CompanyService;
+import cz.topPeople.service.CoordinatorService;
+import cz.topPeople.service.CziscoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping(value = "/coordinator", method = RequestMethod.POST)
 public class CandidateController {
+    @Autowired
+    private CandidateService candidateService;
+    @Autowired
+    private CoordinatorService coordinatorService;
+    @Autowired
+    private CziscoService cziscoService;
 
     @GetMapping("/candidates")
-    public String candidatePage() {
-
+    public String candidatePage(Model model) {
+        model.addAttribute("cziscoList", cziscoService.findAll());
         return "/coordinator/candidatesPage";
     }
 
@@ -34,19 +49,11 @@ public class CandidateController {
                                @RequestParam("adressStreet") String adressStreet,
                                @RequestParam("numberOfHouse") String numberOfHouse,
 
-                               @RequestParam("lang") String lang,
-                               @RequestParam("level") String level,
-
-                               @RequestParam("standardEduction") String standardEduction,
-                               @RequestParam("years") String years,
-                               @RequestParam("nameOfSchool") String nameOfSchool,
-                               @RequestParam("profesion") String profesion,
 
                                @RequestParam("passportNomer") String passportNomer,
                                @RequestParam("passportValidUntil") String passportValidUntil,
                                @RequestParam("issuedByAuthority") String issuedByAuthority,
                                @RequestParam("telephone") String telephone,
-                               @RequestParam("position") String position,
                                @RequestParam("email") String email,
                                @RequestParam("phase") int phase,
                                @RequestParam("status") int status,
@@ -76,18 +83,32 @@ public class CandidateController {
                                @RequestParam("marriedStatus") String marriedStatus,
                                @RequestParam("currentOccupation") String currentOccupation,
                                @RequestParam("comments") String comments,
+                               @RequestParam("position") int position,
                                @RequestParam("coordinator") String coordinator) {
         Candidate candidate = new Candidate(name,surname,gender,nationality,dateOfBirth,marriedStatus,currentOccupation,
-                                            telephone,email,position,passportNomer,passportValidUntil,issuedByAuthority,phase,status,
+                                            telephone,email,passportNomer,passportValidUntil,issuedByAuthority,phase,status,
                                             receivedOrder,schengen,workingAgreement,workingAgree,confirmationOfLivingPlace,
                                             beginWorkingContract,endWorkingContract,schengenTrialPeriod,realStartingOfSchengen,multiVisa,
                                             ECBegin,ECEnd,ECTrialPeriod,expectedStartingAtCompany,duration,presentedToCompany,
                                             ministryOfForeignAffairs,interviewAtConsulate,pickingUpTheVISA,registrationAtLocalOffice,
                                             startingToWork,receivingEmploymentCard,comments);
 
+        Address address = new Address(country, region, city, postIndex, adressStreet, numberOfHouse);
+        BirthPlace place = new BirthPlace(countryOfBirth, birthPlace, street, cityOrVillage, ZIP);
 
+        candidate.setAddress(address);
+        candidate.setBirthPlace(place);
+        candidate.setCoordinator(coordinatorService.findByName(coordinator));
+        System.out.println(coordinatorService.findByName(coordinator));
+        CZ_ISCO isco = cziscoService.findOne(position);
+        System.out.println(isco);
+        System.out.println(isco.getENG_position());
+        System.out.println();
+        candidate.setPosition(isco.getENG_position());
+        candidateService.save(candidate);
+//        String eng_position = isco.getENG_position();
 
-        return "redirect:/candidates";
+        return "redirect:/coordinator/candidates";
     }
 
 }

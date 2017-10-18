@@ -63,7 +63,7 @@ public class Candidate {
 
     public Candidate(String name, String surname, String gender, String nationality,
                      String dateOfBirth, String marriedStatus, String currentOccupation,
-                     String telephone, String email, String position, String passportNumber,
+                     String telephone, String email/*, String position*/, String passportNumber,
                      String passportValidUntil, String issuedByAuthority, int phase,
                      int status, String receivedOrder, String schengen,
                      String workingAgreement, String workingAgree, String confirmationOfLivingPlace,
@@ -82,7 +82,7 @@ public class Candidate {
         this.currentOccupation = currentOccupation;
         this.telephone = telephone;
         this.email = email;
-        this.position = position;
+//        this.position = position;
         this.passportNumber = passportNumber;
         this.passportValidUntil = passportValidUntil;
         this.issuedByAuthority = issuedByAuthority;
