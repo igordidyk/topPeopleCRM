@@ -25,7 +25,7 @@ public class Education {
     private String profesion;
 
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     private Candidate candidate;
 
     public Education(String standardEduction, String year, String nameOfSchool, String profesion) {

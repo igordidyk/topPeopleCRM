@@ -18,6 +18,8 @@ public class CandidateController {
     private CziscoService cziscoService;
     @Autowired
     private LanguageService languageService;
+    @Autowired
+    private EducationService educationService;
 
     @GetMapping("/candidates")
     public String candidatePage(Model model) {
@@ -114,11 +116,26 @@ public class CandidateController {
         return "/coordinator/candidateDetails";
     }
     @PostMapping("/candidates/addLanguage")
-        public String addEducation(@RequestParam("lang") String lang,@RequestParam("level") String level,@RequestParam("candidate") int idCandidate) {
+        public String addLanguage(@RequestParam("lang") String lang,@RequestParam("level") String level,
+                                  @RequestParam("candidate") int idCandidate) {
         Language language = new Language(lang, level);
         language.setCandidate(candidateService.findOne(idCandidate));
         languageService.save(language);
             return "redirect:/coordinator/candidates/candidate-"+idCandidate;
         }
 
+    @PostMapping("/candidates/addEducation")
+    public String addEducation(@RequestParam("standardEduction") String standardEduction,@RequestParam("year") String year,
+                               @RequestParam("nameOfSchool") String nameOfSchool,@RequestParam("profesion") String profesion,
+                               @RequestParam("candidate") int idCandidate) {
+
+        Education education = new Education(standardEduction,year,nameOfSchool,profesion);
+
+        education.setCandidate(candidateService.findOne(idCandidate));
+        educationService.save(education);
+        return "redirect:/coordinator/candidates/candidate-"+idCandidate;
+    }
+
+
+//    educationService
 }

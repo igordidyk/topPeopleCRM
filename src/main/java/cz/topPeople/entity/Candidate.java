@@ -125,7 +125,7 @@ public class Candidate {
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private GroupWithCandidates groupWithCandidates;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "candidate")
+    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "candidate")
     private List<Education> educations = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "candidate")
