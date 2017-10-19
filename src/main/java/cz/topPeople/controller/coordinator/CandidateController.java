@@ -1,13 +1,7 @@
 package cz.topPeople.controller.coordinator;
 
-import cz.topPeople.entity.Address;
-import cz.topPeople.entity.BirthPlace;
-import cz.topPeople.entity.CZ_ISCO;
-import cz.topPeople.entity.Candidate;
-import cz.topPeople.service.CandidateService;
-import cz.topPeople.service.CompanyService;
-import cz.topPeople.service.CoordinatorService;
-import cz.topPeople.service.CziscoService;
+import cz.topPeople.entity.*;
+import cz.topPeople.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,10 +16,13 @@ public class CandidateController {
     private CoordinatorService coordinatorService;
     @Autowired
     private CziscoService cziscoService;
+    @Autowired
+    private LanguageService languageService;
 
     @GetMapping("/candidates")
     public String candidatePage(Model model) {
         model.addAttribute("cziscoList", cziscoService.findAll());
+        model.addAttribute("candidates", candidateService.findAll());
         return "/coordinator/candidatesPage";
     }
 
@@ -85,13 +82,13 @@ public class CandidateController {
                                @RequestParam("comments") String comments,
                                @RequestParam("position") int position,
                                @RequestParam("coordinator") String coordinator) {
-        Candidate candidate = new Candidate(name,surname,gender,nationality,dateOfBirth,marriedStatus,currentOccupation,
-                                            telephone,email,passportNomer,passportValidUntil,issuedByAuthority,phase,status,
-                                            receivedOrder,schengen,workingAgreement,workingAgree,confirmationOfLivingPlace,
-                                            beginWorkingContract,endWorkingContract,schengenTrialPeriod,realStartingOfSchengen,multiVisa,
-                                            ECBegin,ECEnd,ECTrialPeriod,expectedStartingAtCompany,duration,presentedToCompany,
-                                            ministryOfForeignAffairs,interviewAtConsulate,pickingUpTheVISA,registrationAtLocalOffice,
-                                            startingToWork,receivingEmploymentCard,comments);
+        Candidate candidate = new Candidate(name, surname, gender, nationality, dateOfBirth, marriedStatus, currentOccupation,
+                telephone, email, passportNomer, passportValidUntil, issuedByAuthority, phase, status,
+                receivedOrder, schengen, workingAgreement, workingAgree, confirmationOfLivingPlace,
+                beginWorkingContract, endWorkingContract, schengenTrialPeriod, realStartingOfSchengen, multiVisa,
+                ECBegin, ECEnd, ECTrialPeriod, expectedStartingAtCompany, duration, presentedToCompany,
+                ministryOfForeignAffairs, interviewAtConsulate, pickingUpTheVISA, registrationAtLocalOffice,
+                startingToWork, receivingEmploymentCard, comments);
 
         Address address = new Address(country, region, city, postIndex, adressStreet, numberOfHouse);
         BirthPlace place = new BirthPlace(countryOfBirth, birthPlace, street, cityOrVillage, ZIP);
@@ -110,5 +107,18 @@ public class CandidateController {
 
         return "redirect:/coordinator/candidates";
     }
+
+    @GetMapping("/candidates/candidate-{id}")
+    public String candidateDetails(@PathVariable("id") int id,Model model) {
+        model.addAttribute("candidate", candidateService.findOne(id));
+        return "/coordinator/candidateDetails";
+    }
+    @PostMapping("/candidates/addLanguage")
+        public String addEducation(@RequestParam("lang") String lang,@RequestParam("level") String level,@RequestParam("candidate") int idCandidate) {
+        Language language = new Language(lang, level);
+        language.setCandidate(candidateService.findOne(idCandidate));
+        languageService.save(language);
+            return "redirect:/coordinator/candidates/candidate-"+idCandidate;
+        }
 
 }

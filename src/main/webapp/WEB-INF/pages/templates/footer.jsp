@@ -6,7 +6,7 @@
 <div class="navbar-fixed-bottom">
 
     <div class="container">
-    <footer style="padding-top: 60px">
+    <footer style="padding-top: 20px">
         <br>
         <br>
         | OKTENWEB DIGITAL STUDIO 2017

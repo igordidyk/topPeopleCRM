@@ -1,9 +1,18 @@
 package cz.topPeople.entity;
 
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
 import javax.persistence.*;
 
 @Entity
+@Setter
+@Getter
+@NoArgsConstructor
+@ToString(exclude = "candidate")
 public class Education {
 
     @Id
@@ -16,11 +25,8 @@ public class Education {
     private String profesion;
 
 
-    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Candidate candidate;
-
-    public Education() {
-    }
 
     public Education(String standardEduction, String year, String nameOfSchool, String profesion) {
         this.standardEduction = standardEduction;
@@ -28,7 +34,5 @@ public class Education {
         this.nameOfSchool = nameOfSchool;
         this.profesion = profesion;
     }
-
-
 
 }
