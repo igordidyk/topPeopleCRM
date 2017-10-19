@@ -18,7 +18,7 @@ public class CoordinatorController {
 
     @GetMapping("/coordinators")
     public String coordinators(Model model, Principal principal) {
-        model.addAttribute("key", principal.getName());
+//        model.addAttribute("key", principal.getName());
         model.addAttribute("coordinators", coordinatorService.findAll());
         return "/admin/coordinatorPage";
     }
@@ -42,5 +42,6 @@ public class CoordinatorController {
         return "redirect:/admin/coordinators";
 
     }
+
 
 }

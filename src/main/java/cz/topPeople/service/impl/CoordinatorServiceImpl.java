@@ -48,6 +48,12 @@ public class CoordinatorServiceImpl implements CoordinatorService,UserDetailsSer
     }
 
     @Override
+    public void update(Coordinator coordinator) {
+        coordinatorDAO.save(coordinator);
+    }
+
+
+    @Override
     public Coordinator findByName(String name) {
         return coordinatorDAO.findByUserName(name);
     }

@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+
 @Controller
 @RequestMapping(value = "/coordinator", method = RequestMethod.POST)
 public class CandidateController {
@@ -22,7 +24,9 @@ public class CandidateController {
     private EducationService educationService;
 
     @GetMapping("/candidates")
-    public String candidatePage(Model model) {
+    public String candidatePage(Model model, Principal principal) {
+        model.addAttribute("key", principal.getName());
+
         model.addAttribute("cziscoList", cziscoService.findAll());
         model.addAttribute("candidates", candidateService.findAll());
         return "/coordinator/candidatesPage";
@@ -111,31 +115,31 @@ public class CandidateController {
     }
 
     @GetMapping("/candidates/candidate-{id}")
-    public String candidateDetails(@PathVariable("id") int id,Model model) {
+    public String candidateDetails(@PathVariable("id") int id, Model model) {
         model.addAttribute("candidate", candidateService.findOne(id));
         return "/coordinator/candidateDetails";
     }
+
     @PostMapping("/candidates/addLanguage")
-        public String addLanguage(@RequestParam("lang") String lang,@RequestParam("level") String level,
-                                  @RequestParam("candidate") int idCandidate) {
+    public String addLanguage(@RequestParam("lang") String lang, @RequestParam("level") String level,
+                              @RequestParam("candidate") int idCandidate) {
         Language language = new Language(lang, level);
         language.setCandidate(candidateService.findOne(idCandidate));
         languageService.save(language);
-            return "redirect:/coordinator/candidates/candidate-"+idCandidate;
-        }
+        return "redirect:/coordinator/candidates/candidate-" + idCandidate;
+    }
 
     @PostMapping("/candidates/addEducation")
-    public String addEducation(@RequestParam("standardEduction") String standardEduction,@RequestParam("year") String year,
-                               @RequestParam("nameOfSchool") String nameOfSchool,@RequestParam("profesion") String profesion,
+    public String addEducation(@RequestParam("standardEduction") String standardEduction, @RequestParam("year") String year,
+                               @RequestParam("nameOfSchool") String nameOfSchool, @RequestParam("profesion") String profesion,
                                @RequestParam("candidate") int idCandidate) {
 
-        Education education = new Education(standardEduction,year,nameOfSchool,profesion);
+        Education education = new Education(standardEduction, year, nameOfSchool, profesion);
 
         education.setCandidate(candidateService.findOne(idCandidate));
         educationService.save(education);
-        return "redirect:/coordinator/candidates/candidate-"+idCandidate;
+        return "redirect:/coordinator/candidates/candidate-" + idCandidate;
     }
 
 
-//    educationService
 }
