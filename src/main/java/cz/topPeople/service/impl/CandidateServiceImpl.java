@@ -54,5 +54,14 @@ public class CandidateServiceImpl implements CandidateService {
         return dao.findAll(listId);
     }
 
+    @Override
+    public List<Candidate> findAllByPositionEquals(String position) {
+        return  dao.findAllByPositionEquals(position);
+    }
+
+    @Override
+    public Candidate findCandidateWithCoordinatorById(int id) {
+        return dao.findCandidateWithCoordinatorById(id);
+    }
 
 }

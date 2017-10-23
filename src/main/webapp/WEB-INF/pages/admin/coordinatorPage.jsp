@@ -8,7 +8,7 @@
         <li><a href="/admin/company">Company</a></li>
         <li class="active">Coordinators</li>
         <li><a href="/admin/projects">Project</a></li>
-        <li><a href="/admin/allEmployee">Employee</a></li>
+        <li><a href="/admin/allCandidates">Candidates</a></li>
         <p class="navbar-right"><a href="/logout">Log out </a></p>
 
     </ol>

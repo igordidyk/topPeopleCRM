@@ -38,7 +38,7 @@ public class Project {
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private Company company;
 
-    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "project")
+    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "project")
     private List<GroupWithCandidates> groups = new ArrayList<>();
 
     public Project(String typeOfEmployment, String position, String schengenContractStarting, String ECStarting,

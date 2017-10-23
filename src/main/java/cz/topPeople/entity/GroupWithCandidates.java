@@ -32,4 +32,17 @@ public class GroupWithCandidates {
         this.nameGroup = nameGroup;
         this.numberOfCandidates = numberOfCandidates;
     }
+
+    public GroupWithCandidates(String nameGroup, int numberOfCandidates, Project project) {
+        this.nameGroup = nameGroup;
+        this.numberOfCandidates = numberOfCandidates;
+        this.project = project;
+    }
+
+    public GroupWithCandidates(String nameGroup, int numberOfCandidates, Project project, List<Candidate> candidateList) {
+        this.nameGroup = nameGroup;
+        this.numberOfCandidates = numberOfCandidates;
+        this.candidateList = candidateList;
+        this.project = project;
+    }
 }

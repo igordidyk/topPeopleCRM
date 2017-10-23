@@ -49,9 +49,9 @@ public class ProjectController {
                                 @RequestParam("company") int idCompany, @RequestParam("numberOfCandidatesForProject") int numberOfCandidatesForProject) {
 
         Project project = new Project(typeOfEmployment, position, schengenContractStarting, ECStarting,
-                dateForMedicalDocs,statusOfReceived, processingTimePartner, gettingSignedDocuments,
-                submissionDocuments,processingTimeUP, pickingUpDocumentUA, applicationProcess,
-                readyToGoToCZ, deviationToWorkingContract,numberOfCandidatesForProject);
+                dateForMedicalDocs, statusOfReceived, processingTimePartner, gettingSignedDocuments,
+                submissionDocuments, processingTimeUP, pickingUpDocumentUA, applicationProcess,
+                readyToGoToCZ, deviationToWorkingContract, numberOfCandidatesForProject);
         System.out.println("test");
         project.setNumberOfCandidatesForProject(numberOfCandidatesForProject);
         Company company = companyService.findOne(idCompany);
@@ -61,9 +61,19 @@ public class ProjectController {
     }
 
     @GetMapping("/projects/groups")
-    public String groupForProject(Model model) {
+    public String groupForProject(Model model,
+                                  @RequestParam(value = "projectId",
+                                          required = false,
+                                          defaultValue = "0") int projectId) {
+        List<Candidate> candidates = new ArrayList<>();
+        if (projectId != 0) {
+            Project project = projectService.findOne(projectId);
+            String position = project.getPosition();
+            candidates = candidateService.findAllByPositionEquals(position);
+            model.addAttribute("selectedProject", project);
+        }
         model.addAttribute("projects", projectService.findAll());
-        model.addAttribute("candidates", candidateService.findAll());
+        model.addAttribute("candidates", candidates);
 
         return "/admin/groupPage";
     }
@@ -72,29 +82,28 @@ public class ProjectController {
     public String createGroup(Model model, @RequestParam("nameGroup") String nameGroup,
                               @RequestParam("numberOfCandidates") int numberOfCandidates,
                               @RequestParam("project") int idProject,
-                              @RequestParam(value = "candidates",required = false,defaultValue = "null") List<Integer> listId) {
+                              @RequestParam(value = "candidates", required = false, defaultValue = "null") List<Integer> listId) {
 
-        Project project = projectService.findOne(idProject);
+        Project project = projectService.findProjectWithGroupsById(idProject);
         if (numberOfCandidates <= project.getNumberOfCandidatesForProject()) {
             List<Candidate> candidateList = new ArrayList<>();
-            GroupWithCandidates group = new GroupWithCandidates(nameGroup, numberOfCandidates);
-            group.setProject(project);
+            GroupWithCandidates group = new GroupWithCandidates(nameGroup, numberOfCandidates, project);
             project.getGroups().add(group);
 
-            if (listId!=null){
-                 candidateList = candidateService.findAll(listId);
+            if (listId != null) {
+                candidateList = candidateService.findAll(listId);
                 for (Candidate candidate : candidateList) {
                     candidate.setGroupWithCandidates(group);
-                    group.getCandidateList().add(candidate);
                 }
-                project.setNumberOfFreeVacancy(project.getNumberOfCandidatesForProject()-listId.size());
+                group.getCandidateList().addAll(candidateList);
+                project.setNumberOfFreeVacancy(project.getNumberOfFreeVacancy() - listId.size());
+                candidateService.save(candidateList);
             }
+            projectService.save(project);
             groupService.save(group);
-            candidateService.save(candidateList);
         } else {
             model.addAttribute("key", "error");
         }
-
 
         return "redirect:/admin/projects/groups";
     }

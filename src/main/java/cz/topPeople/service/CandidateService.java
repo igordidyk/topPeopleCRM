@@ -23,4 +23,8 @@ public interface CandidateService {
 
     List<Candidate> findAll(Collection<Integer> listId);
 
+    List<Candidate> findAllByPositionEquals(String position);
+
+    Candidate findCandidateWithCoordinatorById(@Param("id") int id);
+
 }

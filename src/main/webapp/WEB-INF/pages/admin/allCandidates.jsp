@@ -1,5 +1,14 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../templates/header_link.jsp"/>
 <div class="container">
+    <ol class="breadcrumb">
+        <li><a href="/admin">Admin Home</a></li>
+        <li><a href="/admin/company">Company</a></li>
+        <li><a href="/admin/coordinators">Coordinators</a></li>
+        <li><a href="/admin/projects">Project</a></li>
+        <li class="active">Candidates</li>
+        <p class="navbar-right"><a href="/logout">Log out </a></p>
+    </ol>
     <h2>All candidates</h2>
     <table id="candidates">
         <thead>
@@ -91,8 +100,9 @@
                 <td>${candidate.comments}</td>
                 <td>
                     <a href="/coordinator/candidates/candidate-${candidate.id}">Show details</a>
+                    <a href="/admin/deleteCandidate/${candidate.id}">Delete</a>
+                    <a href="/admin/editCandidate/${candidate.id}">Edit</a>
                 </td>
-
             </tr>
         </c:forEach>
         </tbody>

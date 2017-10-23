@@ -9,40 +9,45 @@
     </ol>
     <h2>Create group</h2>
     <form action="/admin/projects/groups/createGroup" method="post">
+        <label for="projectSelect">Project</label>
+        <select name="project" id="projectSelect">
+            <option value="" selected disabled>Select project</option>
+            <c:forEach items="${projects}" var="project">
+                <option value="${project.id}"
+                        <c:if test="${selectedProject.id == project.id}">
+                            selected
+                        </c:if>
+                >${project.position}</option>
+            </c:forEach>
+        </select>
         <input type="text" name="nameGroup" placeholder="nameGroup">
         <input type="number" name="numberOfCandidates" placeholder="numberOfCandidates">
         <br>
         <br>
-        <label for="project">Project</label>
-        <select name="project" id="project">
-            <c:forEach items="${projects}" var="project">
-                <option value="${project.id}">${project.position}</option>
-            </c:forEach>
-        </select>
         <br>
         <br>
-        <label for="candidates">Candidate</label>
-        <select name="candidates" id="candidates" multiple >
+        <label for="candidates">Candidates</label>
+        <select name="candidates" id="candidates" multiple>
             <c:forEach items="${candidates}" var="candidate">
-                <option value="${candidate.id}">${candidate.name} ${candidate.surname} ( ${candidate.position} )</option>
+                <option value="${candidate.id}">${candidate.name} ${candidate.surname} ( ${candidate.position} )
+                </option>
             </c:forEach>
         </select>
         <br>
         <br>
         <input type="submit" value="CREATE GROUP">
         <input type="hidden"
-                   name="${_csrf.parameterName}"
-                   value="${_csrf.token}"/>
+               name="${_csrf.parameterName}"
+               value="${_csrf.token}"/>
     </form>
-
-
-
-
-
-
-
 </div>
-
+<script>
+    projectSelect.addEventListener("change", function () {
+        sel = this;
+        let projectId = this.value;
+        location.href = "/admin/projects/groups?projectId=" + projectId;
+    });
+</script>
 
 
 <jsp:include page="../templates/footer.jsp"/>

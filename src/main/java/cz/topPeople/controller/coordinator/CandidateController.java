@@ -38,29 +38,17 @@ public class CandidateController {
                                @RequestParam("gender") String gender,
                                @RequestParam("nationality") String nationality,
                                @RequestParam("dateOfBirth") String dateOfBirth,
-
-                               @RequestParam("countryOfBirth") String countryOfBirth,
-                               @RequestParam("birthPlace") String birthPlace,
-                               @RequestParam("street") String street,
-                               @RequestParam("cityOrVillage") String cityOrVillage,
-                               @RequestParam("zip") String ZIP,
-
-                               @RequestParam("country") String country,
-                               @RequestParam("region") String region,
-                               @RequestParam("city") String city,
-                               @RequestParam("postIndex") String postIndex,
-                               @RequestParam("adressStreet") String adressStreet,
-                               @RequestParam("numberOfHouse") String numberOfHouse,
-
+                               @RequestParam("marriedStatus") String marriedStatus,
+                               @RequestParam("currentOccupation") String currentOccupation,
+                               @RequestParam("telephone") String telephone,
+                               @RequestParam("email") String email,
+                               @RequestParam("position") int position,
 
                                @RequestParam("passportNomer") String passportNomer,
                                @RequestParam("passportValidUntil") String passportValidUntil,
                                @RequestParam("issuedByAuthority") String issuedByAuthority,
-                               @RequestParam("telephone") String telephone,
-                               @RequestParam("email") String email,
                                @RequestParam("phase") int phase,
                                @RequestParam("status") int status,
-
                                @RequestParam("receivedOrder") String receivedOrder,
                                @RequestParam("schengen") String schengen,
                                @RequestParam("workingAgreement") String workingAgreement,
@@ -83,10 +71,22 @@ public class CandidateController {
                                @RequestParam("registrationAtLocalOffice") String registrationAtLocalOffice,
                                @RequestParam("startingToWork") String startingToWork,
                                @RequestParam("receivingEmploymentCard") String receivingEmploymentCard,
-                               @RequestParam("marriedStatus") String marriedStatus,
-                               @RequestParam("currentOccupation") String currentOccupation,
+
                                @RequestParam("comments") String comments,
-                               @RequestParam("position") int position,
+
+                               @RequestParam("country") String country,
+                               @RequestParam("region") String region,
+                               @RequestParam("city") String city,
+                               @RequestParam("postIndex") String postIndex,
+                               @RequestParam("adressStreet") String adressStreet,
+                               @RequestParam("numberOfHouse") String numberOfHouse,
+
+                               @RequestParam("countryOfBirth") String countryOfBirth,
+                               @RequestParam("birthPlace") String birthPlace,
+                               @RequestParam("street") String street,
+                               @RequestParam("cityOrVillage") String cityOrVillage,
+                               @RequestParam("zip") String ZIP,
+
                                @RequestParam("coordinator") String coordinator) {
         Candidate candidate = new Candidate(name, surname, gender, nationality, dateOfBirth, marriedStatus, currentOccupation,
                 telephone, email, passportNomer, passportValidUntil, issuedByAuthority, phase, status,

@@ -17,4 +17,7 @@ public interface ProjectService {
     void delete(Project project);
 
     List<Project> findAllProjectsOfCompany(int id);
+
+    Project findProjectWithGroupsById(int id);
+
 }

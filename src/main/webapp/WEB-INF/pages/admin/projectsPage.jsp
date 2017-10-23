@@ -7,7 +7,7 @@
         <li><a href="/admin/company">Company</a></li>
         <li><a href="/admin/coordinators">Coordinators</a></li>
         <li class="active">Project</li>
-        <li><a href="/admin/allEmployee">Employee</a></li>
+        <li><a href="/admin/allCandidates">Candidates</a></li>
         <p class="navbar-right"><a href="/logout">Log out </a></p>
     </ol>
     <h2>Create project</h2>
@@ -67,6 +67,7 @@
             <th>Type Of Employment</th>
             <th>Position</th>
             <th>Number of candidates</th>
+            <th>Number of free vacancies</th>
             <th>Schengen contract starting</th>
             <th>EC starting</th>
             <th>Date for medical documents</th>
@@ -92,6 +93,7 @@
                 <td>${project.typeOfEmployment}</td>
                 <td>${project.position}</td>
                 <td>${project.numberOfCandidatesForProject}</td>
+                <td>${project.numberOfFreeVacancy}</td>
                 <td>${project.schengenContractStarting}</td>
                 <td>${project.ECStarting}</td>
                 <td>${project.dateForMedicalDocs}</td>
