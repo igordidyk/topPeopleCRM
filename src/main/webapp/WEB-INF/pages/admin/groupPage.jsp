@@ -10,12 +10,25 @@
     <h2>Create group</h2>
     <form action="/admin/projects/groups/createGroup" method="post">
         <input type="text" name="nameGroup" placeholder="nameGroup">
-        <input type="number" name="numberOfCanditates" placeholder="numberOfCanditates">
-        <select name="project" >
+        <input type="number" name="numberOfCandidates" placeholder="numberOfCandidates">
+        <br>
+        <br>
+        <label for="project">Project</label>
+        <select name="project" id="project">
             <c:forEach items="${projects}" var="project">
                 <option value="${project.id}">${project.position}</option>
             </c:forEach>
         </select>
+        <br>
+        <br>
+        <label for="candidates">Candidate</label>
+        <select name="candidates" id="candidates" multiple >
+            <c:forEach items="${candidates}" var="candidate">
+                <option value="${candidate.id}">${candidate.name} ${candidate.surname} ( ${candidate.position} )</option>
+            </c:forEach>
+        </select>
+        <br>
+        <br>
         <input type="submit" value="CREATE GROUP">
         <input type="hidden"
                    name="${_csrf.parameterName}"

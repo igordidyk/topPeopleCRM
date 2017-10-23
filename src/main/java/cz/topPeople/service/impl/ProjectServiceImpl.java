@@ -15,7 +15,6 @@ public class ProjectServiceImpl implements ProjectService{
     @Autowired
     private ProjectDAO projectDAO;
 
-
     @Override
     public void save(Project project) {
         projectDAO.save(project);

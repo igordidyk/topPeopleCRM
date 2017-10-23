@@ -20,15 +20,16 @@ public class GroupWithCandidates {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nameGroup;
-    private int numberOfCanditates;
+    private int numberOfCandidates;
+
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "groupWithCandidates")
     private List<Candidate> candidateList = new ArrayList<>();
 
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     private Project project;
 
-    public GroupWithCandidates(String nameGroup, int numberOfCanditates) {
+    public GroupWithCandidates(String nameGroup, int numberOfCandidates) {
         this.nameGroup = nameGroup;
-        this.numberOfCanditates = numberOfCanditates;
+        this.numberOfCandidates = numberOfCandidates;
     }
 }

@@ -1,7 +1,9 @@
 package cz.topPeople.entity;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -12,7 +14,8 @@ import java.util.Set;
 @Entity
 @Setter
 @Getter
-//@ToString
+@NoArgsConstructor
+@ToString(exclude = {"persons","projects","iscoList"})
 public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,10 +29,8 @@ public class Company {
     private String email;
 
 
-
     @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER, mappedBy = "company")
     private List<ContactPerson> persons = new ArrayList<>();
-
 
     @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "company")
     private List<Project> projects = new ArrayList<>();
@@ -37,8 +38,6 @@ public class Company {
     @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "company")
     private Set<CZ_ISCO> iscoList = new HashSet<>();
 
-    public Company() {
-    }
 
     public Company(String nameCompany, String IC, String contactAddress, String telephone, String CZ_NACE, String email) {
         this.nameCompany = nameCompany;
@@ -61,16 +60,5 @@ public class Company {
         this.iscoList = iscoList;
     }
 
-    @Override
-    public String toString() {
-        return "Company{" +
-                "id=" + id +
-                ", nameCompany='" + nameCompany + '\'' +
-                ", IC='" + IC + '\'' +
-                ", contactAddress='" + contactAddress + '\'' +
-                ", telephone='" + telephone + '\'' +
-                ", CZ_NACE='" + CZ_NACE + '\'' +
-                ", email='" + email + '\'' +
-                '}';
-    }
+
 }

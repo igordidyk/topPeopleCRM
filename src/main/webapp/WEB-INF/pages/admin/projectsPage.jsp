@@ -14,7 +14,7 @@
     <form action="/admin/projects/createProject" method="post">
         <input type="text" name="typeOfEmployment" placeholder="type of employment">
         <input type="text" name="position" placeholder="position">
-        <input type="text" name="numberOfCandidatesForProject" placeholder="number of candidates for project">
+        <input type="number" name="numberOfCandidatesForProject" placeholder="number of candidates for project">
         <input type="text" name="schengenContractStarting" placeholder="schengen contract starting">
         <input type="text" name="ECStarting" placeholder="EC starting">
         <input type="text" name="dateForMedicalDocs" placeholder="date for medical documents">
@@ -22,7 +22,7 @@
         <input type="text" name="statusOfReceived" placeholder="status of received">
         <input type="text" name="processingTimePartner" placeholder="processing time partner">
         <input type="text" name="gettingSignedDocuments" placeholder="getting signed Documents">
-        <input type="text" name="submissionDocumetns" placeholder="submission documetns">
+        <input type="text" name="submissionDocuments" placeholder="submission documents">
         <input type="text" name="processingTimeUP" placeholder="processing time UP">
         <input type="text" name="pickingUpDocumentUA" placeholder="processing  UP document">
         <br>
@@ -47,11 +47,19 @@
     <br>
     <h2>All projects </h2>
     <h3>Show all projects with company</h3>
-    <select name="choseCompany">
-        <c:forEach items="${companies}" var="company">
-            <option value="${company.id}">${company.nameCompany}</option>
-        </c:forEach>
-    </select>
+    <form action="/admin/projects" method="get">
+        <select name="idCompany" id="findProjects">
+            <c:forEach items="${companies}" var="company">
+                <option value="${company.id}">${company.nameCompany}</option>
+            </c:forEach>
+        </select>
+
+        <input type="submit" value="find" id="submit">
+        <%--<input type="hidden"--%>
+                   <%--name="${_csrf.parameterName}"--%>
+                   <%--value="${_csrf.token}"/>--%>
+    </form>
+
     <table id="allProjects">
         <thead>
         <tr>
@@ -76,9 +84,11 @@
         </tr>
         </thead>
 
+
         <tbody>
         <c:forEach items="${projects}" var="project">
             <tr>
+
                 <td>${project.typeOfEmployment}</td>
                 <td>${project.position}</td>
                 <td>${project.numberOfCandidatesForProject}</td>
@@ -88,7 +98,7 @@
                 <td>${project.statusOfReceived}</td>
                 <td>${project.processingTimePartner}</td>
                 <td>${project.gettingSignedDocuments}</td>
-                <td>${project.submissionDocumetns}</td>
+                <td>${project.submissionDocuments}</td>
                 <td>${project.processingTimeUP}</td>
                 <td>${project.pickingUpDocumentUA}</td>
                 <td>${project.applicationProcess}</td>
@@ -106,6 +116,9 @@
 
     <script type="text/javascript" charset="utf-8">
         $('#allProjects').dataTable();
+
+
+
     </script>
 
 

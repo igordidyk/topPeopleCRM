@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -21,6 +22,11 @@ public class CandidateServiceImpl implements CandidateService {
     @Override
     public void save(Candidate candidate) {
         dao.save(candidate);
+    }
+
+    @Override
+    public void save(Collection<Candidate> candidates) {
+        dao.save(candidates);
     }
 
     @Override
@@ -42,4 +48,11 @@ public class CandidateServiceImpl implements CandidateService {
     public void delete(int id) {
         dao.delete(id);
     }
+
+    @Override
+    public List<Candidate> findAll(Collection<Integer> listId) {
+        return dao.findAll(listId);
+    }
+
+
 }
