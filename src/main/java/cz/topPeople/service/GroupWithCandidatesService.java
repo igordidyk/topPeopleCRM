@@ -16,4 +16,7 @@ public interface GroupWithCandidatesService {
     void delete(int id);
 
     void delete(GroupWithCandidates group);
+
+    GroupWithCandidates findGroupWithCandidatesByNameGroupEquals(String name);
+
 }

@@ -122,7 +122,7 @@ public class Candidate {
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     private Coordinator coordinator;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     private GroupWithCandidates groupWithCandidates;
 
     @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "candidate")

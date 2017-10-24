@@ -18,7 +18,6 @@
         <input type="text" name="nationality" placeholder="nationality" value="${candidate.nationality}">
         <input type="text" name="dateOfBirth" placeholder="date of birth" value="${candidate.dateOfBirth}">
         <input type="text" name="marriedStatus" placeholder="married status" value="${candidate.marriedStatus}">
-        <input type="text" name="birthPostIndex" placeholder="Birthday postIndex" value="${candidate.birthPlace.postIndex}">
         <br>
         <br>
         <input type="text" name="currentOccupation" placeholder="current occupation" value="${candidate.currentOccupation}">
@@ -47,7 +46,8 @@
         <input type="text" name="birthPlace" placeholder="born place" value="${candidate.birthPlace.birthPlace}">
         <input type="text" name="street" placeholder="street" value="${candidate.birthPlace.street}">
         <input type="text" name="cityOrVillage" placeholder="city or village" value="${candidate.birthPlace.cityOrVillage}">
-        <%--<input type="text" name="zip" placeholder="zip" value="${candidate.zip}">--%>
+        <input type="text" name="birthPostIndex" placeholder="Birthday postIndex" value="${candidate.birthPlace.postIndex}">
+    <%--<input type="text" name="zip" placeholder="zip" value="${candidate.zip}">--%>
         <%--</div>--%>
 
         <%--<label for="employee-address">Address</label>--%>
@@ -64,6 +64,7 @@
         <%--</div>--%>
 
         <%--<label for="language">Language</label>--%>
+        <%--<input type="checkbox" id="language" onchange="show()">--%>
         <%--<input type="checkbox" id="language" onchange="show()">--%>
 
         <%--<div id="lang">--%>

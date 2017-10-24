@@ -1,6 +1,8 @@
 package cz.topPeople.controller.admin;
 
 import cz.topPeople.entity.Candidate;
+import cz.topPeople.entity.Education;
+import cz.topPeople.entity.Language;
 import cz.topPeople.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +31,12 @@ public class CandidatesController {
         System.out.println(candidates);
         model.addAttribute("candidates", candidates);
         return "admin/allCandidates";
+    }
+
+    @GetMapping("/allCandidates/candidate-{id}")
+    public String candidateDetails(@PathVariable("id") int id, Model model) {
+        model.addAttribute("candidate", candidateService.findOne(id));
+        return "admin/candidateDetails";
     }
 
     @GetMapping("/deleteCandidate/{id}")
@@ -158,4 +166,26 @@ public class CandidatesController {
         candidateService.save(one);
         return "redirect:/admin/editCandidate/"+id;
     }
+
+    @PostMapping("/candidate/addLanguage")
+    public String addLanguage(@RequestParam("lang") String lang, @RequestParam("level") String level,
+                              @RequestParam("candidate") int idCandidate) {
+        Language language = new Language(lang, level);
+        language.setCandidate(candidateService.findOne(idCandidate));
+        languageService.save(language);
+        return "redirect:/admin/allCandidates";
+    }
+
+    @PostMapping("/candidate/addEducation")
+    public String addEducation(@RequestParam("standardEduction") String standardEduction, @RequestParam("year") String year,
+                               @RequestParam("nameOfSchool") String nameOfSchool, @RequestParam("profesion") String profesion,
+                               @RequestParam("candidate") int idCandidate) {
+
+        Education education = new Education(standardEduction, year, nameOfSchool, profesion);
+
+        education.setCandidate(candidateService.findOne(idCandidate));
+        educationService.save(education);
+        return "redirect:/admin/allCandidates/";
+    }
+
 }

@@ -22,7 +22,7 @@ public class GroupWithCandidates {
     private String nameGroup;
     private int numberOfCandidates;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "groupWithCandidates")
+    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "groupWithCandidates")
     private List<Candidate> candidateList = new ArrayList<>();
 
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)

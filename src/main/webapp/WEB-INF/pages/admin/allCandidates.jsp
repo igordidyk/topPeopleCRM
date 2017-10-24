@@ -99,7 +99,7 @@
                 <td>${candidate.receivingEmploymentCard}</td>
                 <td>${candidate.comments}</td>
                 <td>
-                    <a href="/coordinator/candidates/candidate-${candidate.id}">Show details</a>
+                    <a href="/admin/allCandidates/candidate-${candidate.id}">Show details</a>
                     <a href="/admin/deleteCandidate/${candidate.id}">Delete</a>
                     <a href="/admin/editCandidate/${candidate.id}">Edit</a>
                 </td>

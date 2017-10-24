@@ -85,10 +85,13 @@ public class ProjectController {
                               @RequestParam(value = "candidates", required = false, defaultValue = "null") List<Integer> listId) {
 
         Project project = projectService.findProjectWithGroupsById(idProject);
-        if (numberOfCandidates <= project.getNumberOfCandidatesForProject()) {
+        if (numberOfCandidates <= project.getNumberOfCandidatesForProject()
+                &&  numberOfCandidates <= project.getNumberOfFreeVacancy()) {
             List<Candidate> candidateList = new ArrayList<>();
             GroupWithCandidates group = new GroupWithCandidates(nameGroup, numberOfCandidates, project);
             project.getGroups().add(group);
+            groupService.save(group);
+            groupService.findGroupWithCandidatesByNameGroupEquals(nameGroup);
 
             if (listId != null) {
                 candidateList = candidateService.findAll(listId);
@@ -97,10 +100,10 @@ public class ProjectController {
                 }
                 group.getCandidateList().addAll(candidateList);
                 project.setNumberOfFreeVacancy(project.getNumberOfFreeVacancy() - listId.size());
-                candidateService.save(candidateList);
+//                candidateService.save(candidateList);
             }
-            projectService.save(project);
             groupService.save(group);
+            projectService.save(project);
         } else {
             model.addAttribute("key", "error");
         }

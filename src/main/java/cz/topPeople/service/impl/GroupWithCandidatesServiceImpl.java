@@ -2,6 +2,7 @@ package cz.topPeople.service.impl;
 
 import cz.topPeople.dao.GroupWithCandidatesDAO;
 import cz.topPeople.entity.GroupWithCandidates;
+import cz.topPeople.entity.Project;
 import cz.topPeople.service.GroupWithCandidatesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,4 +42,10 @@ public class GroupWithCandidatesServiceImpl implements GroupWithCandidatesServic
         groupDAO.delete(group);
 
     }
+
+    @Override
+    public GroupWithCandidates findGroupWithCandidatesByNameGroupEquals(String name) {
+        return groupDAO.findGroupWithCandidatesByNameGroupEquals(name);
+    }
+
 }
