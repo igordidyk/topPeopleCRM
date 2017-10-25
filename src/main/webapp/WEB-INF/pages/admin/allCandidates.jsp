@@ -1,5 +1,34 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../templates/header_link.jsp"/>
 <div class="container">
+    <ol class="breadcrumb">
+        <li><a href="/admin">Admin Home</a></li>
+        <li><a href="/admin/company">Company</a></li>
+        <li><a href="/admin/coordinators">Coordinators</a></li>
+        <li><a href="/admin/projects">Project</a></li>
+        <li class="active">Candidates</li>
+        <p class="navbar-right"><a href="/logout">Log out </a></p>
+    </ol>
+    <br>
+    <label id="export-label" for="export-label">Export to file</label>
+    <input id="exportEmployee" type="checkbox" onchange="show()">
+
+    <div id="exportFile">
+        <form action="/admin/allCandidates/export" method="post">
+            <label for="nameFile">Exported file name</label>
+            <input id="nameFile" type="text" name="nameFile">
+            <label for="nameSheet">Name sheet in this file</label>
+            <input id="nameSheet" type="text" name="nameSheet">
+
+            <input type="hidden"
+                   name="${_csrf.parameterName}"
+                   value="${_csrf.token}"/>
+            <input type="submit" value="Export">
+        </form>
+
+    </div>
+    <br>
+
     <h2>All candidates</h2>
     <table id="candidates">
         <thead>
@@ -90,9 +119,10 @@
                 <td>${candidate.receivingEmploymentCard}</td>
                 <td>${candidate.comments}</td>
                 <td>
-                    <a href="/coordinator/candidates/candidate-${candidate.id}">Show details</a>
+                    <a href="/admin/allCandidates/candidate-${candidate.id}">Show details</a>
+                    <a href="/admin/deleteCandidate/${candidate.id}">Delete</a>
+                    <a href="/admin/editCandidate/${candidate.id}">Edit</a>
                 </td>
-
             </tr>
         </c:forEach>
         </tbody>
@@ -101,6 +131,12 @@
 
     <script type="text/javascript" charset="utf-8">
         $('#candidates').dataTable();
+        let employeeList = document.getElementById('exportFile');
+        employeeList.style.display = "none";
+        function show() {
+            if (document.getElementById("exportEmployee").checked) employeeList.style.display = "block";
+            else employeeList.style.display = "none";
+        }
     </script>
 </div>
 <jsp:include page="../templates/footer.jsp"/>
