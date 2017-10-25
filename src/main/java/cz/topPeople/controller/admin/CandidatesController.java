@@ -35,7 +35,7 @@ public class CandidatesController {
 
     @GetMapping("/allCandidates/candidate-{id}")
     public String candidateDetails(@PathVariable("id") int id, Model model) {
-        model.addAttribute("candidate", candidateService.findOne(id));
+        model.addAttribute("candidate", candidateService.findByLanguages(id));
         return "admin/candidateDetails";
     }
 
@@ -167,25 +167,5 @@ public class CandidatesController {
         return "redirect:/admin/editCandidate/"+id;
     }
 
-    @PostMapping("/candidate/addLanguage")
-    public String addLanguage(@RequestParam("lang") String lang, @RequestParam("level") String level,
-                              @RequestParam("candidate") int idCandidate) {
-        Language language = new Language(lang, level);
-        language.setCandidate(candidateService.findOne(idCandidate));
-        languageService.save(language);
-        return "redirect:/admin/allCandidates";
-    }
-
-    @PostMapping("/candidate/addEducation")
-    public String addEducation(@RequestParam("standardEduction") String standardEduction, @RequestParam("year") String year,
-                               @RequestParam("nameOfSchool") String nameOfSchool, @RequestParam("profesion") String profesion,
-                               @RequestParam("candidate") int idCandidate) {
-
-        Education education = new Education(standardEduction, year, nameOfSchool, profesion);
-
-        education.setCandidate(candidateService.findOne(idCandidate));
-        educationService.save(education);
-        return "redirect:/admin/allCandidates/";
-    }
 
 }

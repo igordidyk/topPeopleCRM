@@ -27,4 +27,5 @@ public interface CandidateService {
 
     Candidate findCandidateWithCoordinatorById(@Param("id") int id);
 
+    Candidate findByLanguages( int id);
 }

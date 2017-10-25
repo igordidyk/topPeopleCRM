@@ -9,8 +9,14 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface CandidateDAO extends JpaRepository<Candidate, Integer> {
+
     List<Candidate> findAllByPositionEquals(String position);
 
     @Query("select c from Candidate c join fetch c.coordinator co where c.id=:id")
     Candidate findCandidateWithCoordinatorById(@Param("id") int id);
+
+    @Query("select c from Candidate c join fetch c.languages  where c.id=:id")
+    Candidate findByLanguages(@Param("id") int id);
+
+
 }

@@ -64,4 +64,9 @@ public class CandidateServiceImpl implements CandidateService {
         return dao.findCandidateWithCoordinatorById(id);
     }
 
+    @Override
+    public Candidate findByLanguages(int id) {
+        return dao.findByLanguages(id);
+    }
+
 }
